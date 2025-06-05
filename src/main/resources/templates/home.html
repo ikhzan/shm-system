@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Spring boot</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <style>
+        body{
+            font-family: 'Roboto', sans-serif;
+            font-size: 13px;
+            margin: 0;
+            padding: 0;
+<!--            background: #333;-->
+            color: #fff;
+            display: box;
+        }
+        a{
+            text-decoration: none;
+            color: green;
+        }
+        header{
+            margin: 1rem auto;
+            padding: 1rem;
+            background: #332;
+        }
+        nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px green solid;
+            margin: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 4px 4px 4px solid #022 4px 4px 4px solid #022;
+        }
+        nav .logo{
+            font-size: 24px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        nav a{
+            margin: 1rem;
+            padding: 1rem;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        nav a:hover, nav a.active{
+            color: #2f3;
+            cursor: pointer;
+        }
+        main{
+            min-height: 90vh;
+            border: 1px solid red;
+            margin: 1rem auto;
+            padding: 1rem;
+        }
+        footer{
+            border: 1px solid blue;
+            margin: 1rem auto;
+        }
+        section{
+            border: 1px orange solid;
+            margin: 1rem auto;
+        }
+        section h2{
+            text-decoration: underline;
+            text-transform: uppercase;
+            font-weight: 600px;
+            color: #fff;
+            //border: 1px solid grey;
+        }
+    </style>
+</head>
+
+<body class="index-page">
+<header >
+    <nav>
+        <div class="logo">Springboot</div>
+        <div class="middle-nav">
+            <a class="active" th:href="about">About</a>
+            <a th:href="login">Login</a>
+        </div>
+        <div class="right-nav">
+            <a th:href="customer">Request</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section id="about">
+        <h2>About</h2>
+        <p>This web is about providing communication between machines</p>
+    </section>
+
+</main>
+
+<footer >
+    <div class="container">
+        <p>&copy; 2025 <span th:text="${owner}">Your Name</span>. All rights reserved.</p>
+    </div>
+</footer>
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+</body>
+</html>
