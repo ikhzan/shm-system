@@ -5,6 +5,7 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,13 +13,22 @@ import org.springframework.context.annotation.Configuration;
 public class MqttConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(MqttConfig.class);
+    @Value("${mqtt.username}")
+    private String mqttUsername;
+
+    @Value("${mqtt.password}")
+    private String mqttPassword;
+
+    @Value("${mqtt.broker}")
+    private String mqttBroker;
+
 
     @Bean
     public MqttClient mqttClient() throws MqttException {
-        MqttClient client = new MqttClient("tcp://eu1.cloud.thethings.industries:1883", "client90");
+        MqttClient client = new MqttClient(mqttBroker, "client90");
         MqttConnectOptions options = new MqttConnectOptions();
-        options.setUserName("humidity-sensor@zaim-university");
-        options.setPassword("NNSXS.MODEQU4P7GKVJJE6VGCPIH52EU5NAQHMLZCUHNI.CH2OYV67UC4MDSZTSGWGEGFYOBHYEBYVIZNWROLBIXWJLZEJMJ7Q".toCharArray());
+        options.setUserName(mqttUsername);
+        options.setPassword(mqttPassword.toCharArray());
         client.connect(options);
         if (client.isConnected()){
             logger.info("Connected to TTN");
