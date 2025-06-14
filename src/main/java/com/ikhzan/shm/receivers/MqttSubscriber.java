@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ikhzan.shm.data.DeviceData;
 import com.ikhzan.shm.data.UplinkData;
 import com.ikhzan.shm.repository.DeviceDataRepository;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.slf4j.Logger;
@@ -19,6 +20,8 @@ public class MqttSubscriber {
     @Autowired
     private DeviceDataRepository repository;
 
+    private final Dotenv dotenv = Dotenv.load();
+
     private final MqttClient mqttClient;
     private static final Logger logger = LoggerFactory.getLogger(MqttSubscriber.class);
 
@@ -30,11 +33,11 @@ public class MqttSubscriber {
 
     public void subscribeToDevices() {
         String[] deviceTopics = {
-                "v3/humidity-sensor@zaim-university/devices/eui-a84041e2b1829f76/up",
-                "v3/humidity-sensor@zaim-university/devices/eui-a840418d81829f8a/up",
-                "v3/humidity-sensor@zaim-university/devices/lora-2/up",
-                "v3/humidity-sensor@zaim-university/devices/lora-3/up",
-                "v3/humidity-sensor@zaim-university/devices/lora-1/up"
+                dotenv.get("TOPIC1"),
+                dotenv.get("TOPIC2"),
+                dotenv.get("TOPIC3"),
+                dotenv.get("TOPIC4"),
+                dotenv.get("TOPIC5")
         };
 
         for (String topic : deviceTopics) {

@@ -1,5 +1,6 @@
 package com.ikhzan.shm.services;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -10,7 +11,8 @@ import java.util.Date;
 
 @Service
 public class JwtService {
-    private final String secretKey = "your_secret_key"; // Use a secure key
+    private final Dotenv dotenv = Dotenv.load();
+    private final String secretKey = dotenv.get("JWT_SECRET"); // Use a secure key
     private final long expirationTime = 3600000; // 1 hour
 
     public String generateToken(String username) {
